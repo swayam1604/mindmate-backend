@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
+  "prebuild": "chmod +x node_modules/.bin/vite",
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+}
   "dependencies": {
     "axios": "^1.6.2",
     "react": "^18.2.0",
