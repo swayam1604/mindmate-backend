@@ -12,7 +12,7 @@ function App() {
 
     try {
       const res = await fetch('https://mindmate-1-zzhy.onrender.com/api/analyze', {
-        method: 'POST',
+
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ journal }),
       });
