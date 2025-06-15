@@ -8,26 +8,27 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    if (!journal.trim()) return;
-    setLoading(true);
+  if (!journal.trim()) return;
+  setLoading(true);
 
-    try {
-      const res = await fetch('https://mindmate-backend.onrender.com/analyze', {
+  try {
+   const res = await fetch('https://your-backend-service-name.onrender.com/api/analyze', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ journal }),
+});
+ 
 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ journal }),
-      });
+    const data = await res.json();
+    setResponse(data.analysis);
+  } catch (err) {
+    console.error("Frontend error:", err);
+    setResponse('Something went wrong. Please try again.');
+  }
 
-      const data = await res.json();
-      setResponse(data.analysis);
-    } catch (err) {
-      console.error(err);
-      setResponse('Something went wrong. Please try again.');
-    }
+  setLoading(false);
+};
 
-    setLoading(false);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-slate-900 text-white px-6 py-10 flex flex-col items-center">
